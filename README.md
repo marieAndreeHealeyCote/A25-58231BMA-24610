@@ -2,8 +2,6 @@
 
 ## Système web PHP orienté objet avec une base de données MySQL
 
-=================
-
 ## Projet PHP :
 
 ### • Créer des classes avec ses propriétés et méthodes.
