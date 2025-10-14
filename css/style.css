@@ -1,0 +1,111 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background: #f7f7f7;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #3498db;
+  color: white;
+}
+
+a.btn {
+  background-color: #2ecc71;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+a.btn:hover {
+  background-color: #27ae60;
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 6px;
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input,
+form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+form input[type="text"] {
+  padding: 10px;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+form button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #2980b9;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form .cancel {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #888;
+}
+
+td:last-child {
+  white-space: nowrap;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
