@@ -17,16 +17,12 @@ $listeAuteurs = $auteurObj->getAll();
 if (isset($_GET['id'])) {
     $livreData = $livre->getById($_GET['id']);
 }
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $livre->modifier($_POST);
-}
 ?>
 
 <link rel="stylesheet" href="css/style.css">
 
 <h2>Modifier le livre</h2>
-<form method="POST">
+<form method="POST" action="livre-update.php">
     <input type="hidden" name="id" value="<?= $livreData['id'] ?>">
 
     <div>

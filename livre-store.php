@@ -1,5 +1,5 @@
 <?php
-require_once('classes/CRUD.php');
-$crud = new CRUD;
-$insert = $crud->insert('livre', $_POST);
+require_once 'Classe/Livre.php';
+$livre = new Livre();
+$insert = $livre->ajouter($_POST);
 header("location:livre-show.php?id=$insert");

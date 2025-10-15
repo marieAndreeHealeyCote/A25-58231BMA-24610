@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <h2>Ajouter un nouveau livre</h2>
-    <form method="POST">
+    <form method="POST" action="livre-store.php">
         <div>
             <label for="titre">Titre :</label>
             <input type="text" name="titre" id="titre" value="" required>

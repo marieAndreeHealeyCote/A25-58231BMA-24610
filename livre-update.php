@@ -1,4 +1,4 @@
 <?php
-require_once('classes/CRUD.php');
-$crud = new CRUD;
-$update = $crud->update('livre', $_POST, 'livre-index');
+require_once 'Classe/Livre.php';
+$livre = new Livre();
+$livre->modifier($_POST);

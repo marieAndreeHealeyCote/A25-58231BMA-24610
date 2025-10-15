@@ -1,14 +1,29 @@
 <?php
-if (!isset($_GET['id']) || $_GET['id'] == null) {
-    header('location:liste-index.php');
-    exit;
-}
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+// if (!isset($_GET['id']) || $_GET['id'] == null) {
+//     header('location:livre-index.php');
+//     exit;
+// }
+
+require_once 'Classe/Livre.php';
+$livre = new Livre();
 $id = $_GET['id'];
-require_once('classes/CRUD.php');
-$crud = new Crud;
-$selectId = $crud->selectId('livre', $id);
-extract($selectId);
+$livreAffiche = $livre->getById($id);
+
+require_once 'Classe/Categorie.php';
+$categorie = new Categorie();
+$listeCategories = $categorie->getById($livreAffiche['categorie_id']);
+
+require_once 'Classe/Editeur.php';
+$editeurObj = new Editeur();
+$listeEditeurs = $editeurObj->getById($livreAffiche['editeur_id']);
+
+require_once 'Classe/Auteur.php';
+$auteurObj = new Auteur();
+$listeAuteurs = $auteurObj->getById($livreAffiche['auteur_id']);
 ?>
 
 <!DOCTYPE html>
