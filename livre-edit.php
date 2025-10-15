@@ -16,7 +16,6 @@ $auteurObj = new Auteur();
 $listeAuteurs = $auteurObj->getAll();
 
 if (isset($_GET['id'])) {
-    $modifier = true;
     $livreData = $livre->getById($_GET['id']);
 }
 
@@ -29,20 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $livre->editeur_id = $_POST['editeur_id'];
     $livre->auteur_id = $_POST['auteur_id'];
 
-    if (isset($_POST['id'])) {
-        $livre->id = $_POST['id'];
-        $livre->modifier();
-    } else {
-        $livre->ajouter();
-    }
-    header('Location: index.php');
-    exit;
+    $livre->id = $_POST['id'];
+    $livre->modifier();
 }
 ?>
 
 <link rel="stylesheet" href="css/style.css">
 
-<h2><?= $modifier ? "Modifier le livre" : "Ajouter un nouveau livre" ?></h2>
+<h2><?= "Modifier le livre" ?></h2>
 <form method="POST">
     <?php if ($modifier): ?>
         <input type="hidden" name="id" value="<?= $livreData->id ?>">
@@ -88,5 +81,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </select>
 
     <button type="submit"><?= $modifier ? "Mettre à jour" : "Ajouter" ?></button>
-    <a href="index.php" class="cancel">Annuler</a>
+    <a href="livre-index.php" class="cancel">Annuler</a>
 </form>

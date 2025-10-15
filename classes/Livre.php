@@ -1,5 +1,5 @@
 <?php
-require_once 'Classe/Database.php';
+require_once 'Classe/CRUD.php';
 
 class Livre
 {
@@ -12,68 +12,59 @@ class Livre
     public $editeur_id;
     public $auteur_id;
 
-    private $pdo;
+    private $crud;
 
     public function __construct()
     {
-        $this->pdo = Database::connect();
+        $this->crud = new CRUD;
     }
 
     public function __destruct()
     {
         // Ferme proprement la connexion à la base de données
-        $this->pdo = null;
-    }
-
-    public function ajouter()
-    {
-        $sql = "INSERT INTO livres (titre, annee_publication, genre, categorie_id, editeur_id, auteur_id) 
-        VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            $this->titre,
-            $this->annee_publication,
-            $this->genre,
-            $this->categorie_id,
-            $this->editeur_id,
-            $this->auteur_id
-        ]);
-    }
-
-    public function modifier()
-    {
-        $sql = "UPDATE livres SET titre = ?, annee_publication = ?, genre = ?, categorie_id = ?, editeur_id = ?, auteur_id = ? 
-        WHERE id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            $this->titre,
-            $this->annee_publication,
-            $this->genre,
-            $this->categorie_id,
-            $this->editeur_id,
-            $this->auteur_id,
-            $this->id
-        ]);
-    }
-
-    public function supprimer($id)
-    {
-        $sql = "DELETE FROM livres WHERE id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id]);
+        $this->crud = null;
     }
 
     public function getAll()
     {
-        $sql = "SELECT * FROM livres ORDER BY id DESC";
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_OBJ);
+        return $this->crud->select('livres');
     }
 
     public function getById($id)
     {
-        $sql = "SELECT * FROM livres WHERE id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $this->crud->selectId('livres', $id);
+    }
+
+    public function ajouter()
+    {
+        $aData = [
+            'titre' => $this->titre,
+            'annee_publication' => $this->annee_publication,
+            'genre' => $this->genre,
+            'categorie_id' => $this->categorie_id,
+            'editeur_id' => $this->editeur_id,
+            'auteur_id' => $this->auteur_id,
+        ];
+        $livreId = $this->crud->insert('livres', $aData);
+        return $livreId;
+    }
+
+    public function modifier($url = 'livres-index')
+    {
+        $aData = [
+            'id' => $this->id,
+            'titre' => $this->titre,
+            'annee_publication' => $this->annee_publication,
+            'genre' => $this->genre,
+            'categorie_id' => $this->categorie_id,
+            'editeur_id' => $this->editeur_id,
+            'auteur_id' => $this->auteur_id,
+        ];
+        $this->crud->update('livres', $aData, $url);
+    }
+
+    public function supprimer($id, $url = 'livres-index')
+    {
+        $this->crud->delete('livres', $id, $url);
     }
 }

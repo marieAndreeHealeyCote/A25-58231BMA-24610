@@ -1,36 +1,14 @@
 <?php
-require_once 'Classe/Categorie.php';
-
-$categorieObj = new Categorie();
-
-// Ajouter ou modifier
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom = $_POST['nom'];
-    if (!empty($_POST['id'])) {
-        // Modifier
-        $categorieObj->update($_POST['id'], $nom);
-    } else {
-        // Ajouter
-        $categorieObj->ajouter($nom);
-    }
-    header("Location: categorie.php");
+if (!isset($_GET['id']) || $_GET['id'] == null) {
+    header('location:liste-index.php');
     exit;
 }
 
-// Supprimer
-if (isset($_GET['supprimer'])) {
-    $categorieObj->supprimer($_GET['supprimer']);
-    header("Location: categorie.php");
-    exit;
-}
-
-// Récupération pour modification
-$editCategorie = null;
-if (isset($_GET['modifier'])) {
-    $editCategorie = $categorieObj->getByIdFull($_GET['modifier']);
-}
-
-$listeCategories = $categorieObj->getAll();
+$id = $_GET['id'];
+require_once('classes/CRUD.php');
+$crud = new Crud;
+$selectId = $crud->selectId('livre', $id);
+extract($selectId);
 ?>
 
 <!DOCTYPE html>
@@ -43,8 +21,8 @@ $listeCategories = $categorieObj->getAll();
 </head>
 
 <body>
-    <h1>📂 Gestion des catégories</h1>
-    <a href="index.php" class="btn">⬅ Retour aux livres</a>
+    <h1>Gestion des catégories</h1>
+    <a href="livre-index.php" class="btn">Retour aux livres</a>
 
     <h2><?= $editCategorie ? "Modifier une catégorie" : "Ajouter une nouvelle catégorie" ?></h2>
 
@@ -73,7 +51,7 @@ $listeCategories = $categorieObj->getAll();
                     <td><?= $cat->id ?></td>
                     <td><?= htmlspecialchars($cat->nom) ?></td>
                     <td>
-                        <a href="?modifier=<?= $cat->id ?>">✏️ Modifier</a> |
+                        <a href="?modifier=<?= $cat->id ?>">Modifier</a> |
                         <a href="?supprimer=<?= $cat->id ?>" onclick="return confirm('Supprimer cette catégorie ?')">🗑️ Supprimer</a>
                     </td>
                 </tr>

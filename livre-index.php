@@ -1,6 +1,7 @@
 <?php
 require_once 'Classe/Livre.php';
 $livre = new Livre();
+$listeLivres = $livre->getAll();
 
 require_once 'Classe/Categorie.php';
 $categorieObj = new Categorie();
@@ -14,11 +15,8 @@ $auteurObj = new Auteur();
 // Suppression
 if (isset($_GET['supprimer'])) {
     $livre->supprimer($_GET['supprimer']);
-    header('Location: index.php');
     exit;
 }
-
-$listeLivres = $livre->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +29,8 @@ $listeLivres = $livre->getAll();
 </head>
 
 <body>
-    <h1>📚 Gestion de la Librairie</h1>
-    <a href="livre_form.php" class="btn">➕ Ajouter un livre</a>
+    <h1>Gestion de la Librairie</h1>
+    <a href="livre-create.php" class="btn"> Ajouter un livre</a>
 
     <table>
         <thead>
@@ -56,8 +54,8 @@ $listeLivres = $livre->getAll();
                     <td><?= $l->annee_publication ?></td>
                     <td><?= $l->genre ?></td>
                     <td>
-                        <a href="livre_form.php?id=<?= $l->id ?>">✏️ Modifier</a> |
-                        <a href="?supprimer=<?= $l->id ?>" onclick="return confirm('Supprimer ce livre ?')">🗑️ Supprimer</a>
+                        <a href="livre-edit.php?id=<?= $l->id ?>">Modifier</a>
+                        <a href="?supprimer=<?= $l->id ?>" onclick="return confirm('Supprimer ce livre ?')">Supprimer</a>
                     </td>
                     <td><?= $categorieObj->getById($l->categorie_id) ?></td>
                     <td><?= $editeurObj->getById($l->editeur_id) ?></td>
