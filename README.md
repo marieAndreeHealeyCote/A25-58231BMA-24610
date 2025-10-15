@@ -13,5 +13,3 @@
 ### • Avec un formulaire HTML, devoir pouvoir saisir, effacer et mettre à jour les données dans votre base de données en utilisant les méthodes de classe créées.
 
 ### • Devoir afficher une liste avec les données de la BD.
-
-### lien github page :
