@@ -46,19 +46,19 @@ if (isset($_GET['supprimer'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($listeLivres as $l): ?>
+            <?php foreach ($listeLivres as $livre): ?>
                 <tr>
-                    <td><?= $l->id ?></td>
-                    <td><?= $l->titre ?></td>
-                    <td><?= $auteurObj->getById($l->auteur_id) ?></td>
-                    <td><?= $l->annee_publication ?></td>
-                    <td><?= $l->genre ?></td>
+                    <td><?= $livre['id'] ?></td>
+                    <td><?= $livre['titre'] ?></td>
+                    <td><?= $auteurObj->getById($livre['auteur_id'])['nom'] ?></td>
+                    <td><?= $livre['annee_publication'] ?></td>
+                    <td><?= $livre['genre'] ?></td>
                     <td>
-                        <a href="livre-edit.php?id=<?= $l->id ?>">Modifier</a>
-                        <a href="?supprimer=<?= $l->id ?>" onclick="return confirm('Supprimer ce livre ?')">Supprimer</a>
+                        <a href="livre-edit.php?id=<?= $livre['id'] ?>">Modifier</a>
+                        <a href="?supprimer=<?= $livre['id'] ?>" onclick="return confirm('Supprimer ce livre ?')">Supprimer</a>
                     </td>
-                    <td><?= $categorieObj->getById($l->categorie_id) ?></td>
-                    <td><?= $editeurObj->getById($l->editeur_id) ?></td>
+                    <td><?= $categorieObj->getById($livre['categorie_id'])['nom'] ?></td>
+                    <td><?= $editeurObj->getById($livre['editeur_id'])['nom'] ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

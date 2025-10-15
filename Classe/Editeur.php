@@ -17,7 +17,7 @@ class Editeur
 
     public function getById($id)
     {
-        return $this->crud->selectId('auteurs', $id);
+        return $this->crud->selectId('editeurs', $id);
     }
 
     public function getAll()

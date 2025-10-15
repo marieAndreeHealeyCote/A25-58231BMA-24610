@@ -17,7 +17,7 @@ class Categorie
 
     public function getById($id)
     {
-        return $this->crud->selectId('auteurs', $id);
+        return $this->crud->selectId('categories', $id);
     }
 
     public function getAll()
