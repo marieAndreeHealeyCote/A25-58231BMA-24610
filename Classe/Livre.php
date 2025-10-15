@@ -41,7 +41,7 @@ class Livre
         return $livreId;
     }
 
-    public function modifier($aPost, $url = 'livres-index')
+    public function modifier($aPost, $url = 'livre-index')
     {
         $aData = [
             'id' => $aPost['id'],
@@ -55,7 +55,7 @@ class Livre
         $this->crud->update('livres', $aData, $url);
     }
 
-    public function supprimer($id, $url = 'livres-index')
+    public function supprimer($id, $url = 'livre-index')
     {
         $this->crud->delete('livres', $id, $url);
     }
