@@ -31,7 +31,7 @@ class Livre
     {
         $aData = [
             'titre' => $aPost['titre'],
-            'annee_publication' => $aPost['auteur'],
+            'annee_publication' => $aPost['annee_publication'],
             'genre' => $aPost['genre'],
             'categorie_id' => $aPost['categorie_id'],
             'editeur_id' => $aPost['editeur_id'],
@@ -46,7 +46,7 @@ class Livre
         $aData = [
             'id' => $aPost['id'],
             'titre' => $aPost['titre'],
-            'annee_publication' => $aPost['auteur'],
+            'annee_publication' => $aPost['annee_publication'],
             'genre' => $aPost['genre'],
             'categorie_id' => $aPost['categorie_id'],
             'editeur_id' => $aPost['editeur_id'],

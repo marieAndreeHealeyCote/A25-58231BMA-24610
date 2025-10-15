@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div>
-            <label for="annee">Année de publication :</label>
-            <input type="number" name="annee" id="annee" min="1900" max="2030" value="" required>
+            <label for="annee_publication">Année de publication :</label>
+            <input type="number" name="annee_publication" id="annee_publication" min="1900" max="2030" value="" required>
         </div>
 
         <div>

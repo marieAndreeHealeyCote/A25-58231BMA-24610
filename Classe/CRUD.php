@@ -48,8 +48,6 @@ class CRUD extends PDO
         }
 
         $stmt->execute();
-        var_dump($stmt, $this, $this->lastInsertId());
-        die('yahoo');
         return $this->lastInsertId();
     }
 

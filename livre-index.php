@@ -2,6 +2,7 @@
 require_once 'Classe/Livre.php';
 $livre = new Livre();
 $listeLivres = $livre->getAll();
+
 require_once 'Classe/Categorie.php';
 $categorieObj = new Categorie();
 
