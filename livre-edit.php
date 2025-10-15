@@ -37,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
         <label for="auteur_id">Auteur :</label>
         <select name="auteur_id" id="auteur_id" required>
-            <option value="">-- Sélectionner --</option>
+            <option value="" disabled>-- Sélectionner --</option>
             <?php foreach ($listeAuteurs as $auteur): ?>
-                <option value="<?= $auteur['id'] ?>" <?= $livreData->auteur_id == $auteur['id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($auteur->nom) ?>
+                <option value="<?= $auteur['id'] ?>" <?= $livreData['auteur_id'] == $auteur['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($auteur['nom']) ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
         <label for="categorie_id">Catégorie :</label>
         <select name="categorie_id" id="categorie_id" required>
-            <option value="">-- Sélectionner --</option>
+            <option value="" disabled>-- Sélectionner --</option>
             <?php foreach ($listeCategories as $categorie): ?>
-                <option value="<?= $categorie['id'] ?>" <?= $livreData->categorie_id == $categorie['id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($categorie->nom) ?>
+                <option value="<?= $categorie['id'] ?>" <?= $livreData['categorie_id'] == $categorie['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($categorie['nom']) ?>
                 </option>
             <?php endforeach; ?>
         </select>
@@ -71,15 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
         <label for="editeur_id">Éditeur :</label>
         <select name="editeur_id" id="editeur_id" required>
-            <option value="">-- Sélectionner --</option>
+            <option value="" disabled>-- Sélectionner --</option>
             <?php foreach ($listeEditeurs as $editeur): ?>
-                <option value="<?= $editeur['id'] ?>" <?= $livreData->editeur_id == $editeur['id'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($editeur->nom) ?>
+                <option value="<?= $editeur['id'] ?>" <?= $livreData['editeur_id'] == $editeur['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($editeur['nom']) ?>
                 </option>
             <?php endforeach; ?>
         </select>
     </div>
 
-    <button type="submit">Mettre à jour</button>
-    <a href="livre-index.php" class="cancel">Annuler</a>
+    <button type="submit" class="btn vert">Mettre à jour</button>
+    <a href="livre-index.php" class="btn bleu">Annuler</a>
 </form>
