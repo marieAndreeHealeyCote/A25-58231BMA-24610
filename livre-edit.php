@@ -1,7 +1,6 @@
 <?php
 require_once 'Classe/Livre.php';
 $livre = new Livre();
-$modifier = false;
 
 require_once 'Classe/Categorie.php';
 $categorie = new Categorie();
@@ -20,66 +19,67 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $livre->titre = $_POST['titre'];
-    $livre->auteur = $_POST['auteur'];
-    $livre->annee_publication = $_POST['annee'];
-    $livre->genre = $_POST['genre'];
-    $livre->categorie_id = $_POST['categorie_id'];
-    $livre->editeur_id = $_POST['editeur_id'];
-    $livre->auteur_id = $_POST['auteur_id'];
-
-    $livre->id = $_POST['id'];
-    $livre->modifier();
+    $livre->modifier($_POST);
 }
 ?>
 
 <link rel="stylesheet" href="css/style.css">
 
-<h2><?= "Modifier le livre" ?></h2>
+<h2>Modifier le livre</h2>
 <form method="POST">
-    <?php if ($modifier): ?>
-        <input type="hidden" name="id" value="<?= $livreData->id ?>">
-    <?php endif; ?>
+    <input type="hidden" name="id" value="<?= $livreData['id'] ?>">
 
-    <label>Titre :</label>
-    <input type="text" name="titre" required value="<?= $modifier ? $livreData->titre : '' ?>">
+    <div>
+        <label for="titre">Titre :</label>
+        <input type="text" name="titre" id="titre" value="<?= $livreData['titre'] ?>" required>
+    </div>
 
-    <label>Auteur :</label>
-    <select name="auteur_id" required>
-        <option value="">-- Sélectionner --</option>
-        <?php foreach ($listeAuteurs as $a): ?>
-            <option value="<?= $a->id ?>" <?= ($modifier && $livreData->auteur_id == $a->id) ? 'selected' : '' ?>>
-                <?= htmlspecialchars($a->nom) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+    <div>
+        <label for="auteur_id">Auteur :</label>
+        <select name="auteur_id" id="auteur_id" required>
+            <option value="">-- Sélectionner --</option>
+            <?php foreach ($listeAuteurs as $auteur): ?>
+                <option value="<?= $auteur['id'] ?>" <?= $livreData->auteur_id == $auteur['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($auteur->nom) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
 
-    <label>Année de publication :</label>
-    <input type="number" name="annee" required value="<?= $modifier ? $livreData->annee_publication : '' ?>">
+    <div>
+        <label for="annee">Année de publication :</label>
+        <input type="number" name="annee" id="annee" min="1900" max="2030" value="<?= $livreData['annee_publication'] ?>" required>
+    </div>
 
-    <label>Genre :</label>
-    <input type="text" name="genre" required value="<?= $modifier ? $livreData->genre : '' ?>">
+    <div>
+        <label for="genre">Genre :</label>
+        <input type="text" name="genre" id="genre" required value="<?= $livreData['genre'] ?>">
+    </div>
 
-    <label>Catégorie :</label>
-    <select name="categorie_id" required>
-        <option value="">-- Sélectionner --</option>
-        <?php foreach ($listeCategories as $cat): ?>
-            <option value="<?= $cat->id ?>" <?= ($modifier && $livreData->categorie_id == $cat->id) ? 'selected' : '' ?>>
-                <?= htmlspecialchars($cat->nom) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+    <div>
+        <label for="categorie_id">Catégorie :</label>
+        <select name="categorie_id" id="categorie_id" required>
+            <option value="">-- Sélectionner --</option>
+            <?php foreach ($listeCategories as $categorie): ?>
+                <option value="<?= $categorie['id'] ?>" <?= $livreData->categorie_id == $categorie['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($categorie->nom) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
 
-    <label>Éditeur :</label>
-    <select name="editeur_id" required>
-        <option value="">-- Sélectionner --</option>
-        <?php foreach ($listeEditeurs as $ed): ?>
-            <option value="<?= $ed->id ?>" <?= ($modifier && $livreData->editeur_id == $ed->id) ? 'selected' : '' ?>>
-                <?= htmlspecialchars($ed->nom) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+    <div>
+        <label for="editeur_id">Éditeur :</label>
+        <select name="editeur_id" id="editeur_id" required>
+            <option value="">-- Sélectionner --</option>
+            <?php foreach ($listeEditeurs as $editeur): ?>
+                <option value="<?= $editeur['id'] ?>" <?= $livreData->editeur_id == $editeur['id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($editeur->nom) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
 
-    <button type="submit"><?= $modifier ? "Mettre à jour" : "Ajouter" ?></button>
+    <button type="submit">Mettre à jour</button>
     <a href="livre-index.php" class="cancel">Annuler</a>
 </form>

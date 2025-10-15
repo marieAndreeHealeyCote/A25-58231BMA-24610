@@ -4,6 +4,8 @@ require_once 'Classe/CRUD.php';
 class Auteur
 {
     private $crud;
+    private int $id;
+    private string $nom;
 
     public function __construct()
     {

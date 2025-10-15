@@ -12,16 +12,9 @@ $auteurObj = new Auteur();
 $listeAuteurs = $auteurObj->getAll();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $livre->titre = $_POST['titre'];
-    $livre->auteur = $_POST['auteur'];
-    $livre->annee_publication = $_POST['annee'];
-    $livre->genre = $_POST['genre'];
-    $livre->categorie_id = $_POST['categorie_id'];
-    $livre->editeur_id = $_POST['editeur_id'];
-    $livre->auteur_id = $_POST['auteur_id'];
-
-    $livre->ajouter();
-
+    require_once 'Classe/Livre.php';
+    $livre = new Livre();
+    $livre->ajouter($_POST);
     header('Location: livre-index.php');
     exit;
 }
@@ -39,74 +32,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h2>Ajouter un nouveau livre</h2>
     <form method="POST">
-        <label>Titre :</label>
-        <input type="text" name="titre" value="" required>
+        <div>
+            <label for="titre">Titre :</label>
+            <input type="text" name="titre" id="titre" value="" required>
+        </div>
 
-        <label>Auteur :</label>
-        <select name="auteur_id" required>
-            <option value="">-- Sélectionner --</option>
-            <?php foreach ($listeAuteurs as $auteur): ?>
-                <option value="<?= $auteur->id ?>">
-                    <?= htmlspecialchars($auteur->nom) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <div>
+            <label for="auteur_id">Auteur :</label>
+            <select name="auteur_id" id="auteur_id" required>
+                <option value="" disabled selected>-- Sélectionner --</option>
+                <?php foreach ($listeAuteurs as $auteur): ?>
+                    <option value="<?= $auteur['id'] ?>">
+                        <?= htmlspecialchars($auteur['nom']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-        <label>Année de publication :</label>
-        <input type="number" name="annee" required value="">
+        <div>
+            <label for="annee">Année de publication :</label>
+            <input type="number" name="annee" id="annee" min="1900" max="2030" value="" required>
+        </div>
 
-        <label>Genre :</label>
-        <input type="text" name="genre" required value="">
+        <div>
+            <label for="genre">Genre :</label>
+            <input type="text" name="genre" id="genre" required value="">
+        </div>
 
-        <label>Catégorie :</label>
-        <select name="categorie_id" required>
-            <option value="">-- Sélectionner --</option>
-            <?php foreach ($listeCategories as $categorie): ?>
-                <option value="<?= $categorie->id ?>">
-                    <?= htmlspecialchars($categorie->nom) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <div>
+            <label for="categorie_id">Catégorie :</label>
+            <select name="categorie_id" id="categorie_id" required>
+                <option value="" disabled selected>-- Sélectionner --</option>
+                <?php foreach ($listeCategories as $categorie): ?>
+                    <option value="<?= $categorie['id'] ?>">
+                        <?= htmlspecialchars($categorie['nom']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-        <label>Éditeur :</label>
-        <select name="editeur_id" required>
-            <option value="">-- Sélectionner --</option>
-            <?php foreach ($listeEditeurs as $editeur): ?>
-                <option value="<?= $editeur->id ?>">
-                    <?= htmlspecialchars($editeur->nom) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <div>
+            <label for="editeur_id">Éditeur :</label>
+            <select name="editeur_id" id="editeur_id" required>
+                <option value="" disabled selected>-- Sélectionner --</option>
+                <?php foreach ($listeEditeurs as $editeur): ?>
+                    <option value="<?= $editeur['id'] ?>">
+                        <?= htmlspecialchars($editeur['nom']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-        <button type=" submit">Ajouter</button>
-        <a href="livre-index.php" class="cancel">Annuler</a>
+        <button type="submit" class="btn vert">Ajouter</button>
+        <a href="livre-index.php" class="btn bleu">Annuler</a>
     </form>
-</body>
-
-</html>
-
-<body>
-    <div class="container">
-        <form action="client-store.php" method="post">
-            <h2>New Client</h2>
-            <label>Name
-                <input type="text" name="name">
-            </label>
-            <label>Address
-                <input type="text" name="address">
-            </label>
-            <label>Phone
-                <input type="text" name="phone">
-            </label>
-            <label>Zip Code
-                <input type="text" name="zip_code">
-            </label>
-            <label>Email
-                <input type="email" name="email">
-            </label>
-            <input type="submit" class="btn" value="save">
-        </form>
-    </div>
 </body>
 
 </html>

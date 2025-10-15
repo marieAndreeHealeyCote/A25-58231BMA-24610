@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 class CRUD extends PDO
 {
@@ -43,8 +46,10 @@ class CRUD extends PDO
         foreach ($data as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }
-        $stmt->execute();
 
+        $stmt->execute();
+        var_dump($stmt, $this, $this->lastInsertId());
+        die('yahoo');
         return $this->lastInsertId();
     }
 

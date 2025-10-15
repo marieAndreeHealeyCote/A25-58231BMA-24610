@@ -2,7 +2,6 @@
 require_once 'Classe/Livre.php';
 $livre = new Livre();
 $listeLivres = $livre->getAll();
-
 require_once 'Classe/Categorie.php';
 $categorieObj = new Categorie();
 
@@ -30,7 +29,7 @@ if (isset($_GET['supprimer'])) {
 
 <body>
     <h1>Gestion de la Librairie</h1>
-    <a href="livre-create.php" class="btn"> Ajouter un livre</a>
+    <a href="livre-create.php" class="btn bleu"> Ajouter un livre</a>
 
     <table>
         <thead>
