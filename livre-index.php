@@ -19,17 +19,10 @@ if (isset($_GET['supprimer'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Librairie</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<?php include('layouts/header.php'); ?>
 
 <body>
-    <h1>Gestion de la Librairie</h1>
+    <h1>Librairie - Gestion de livres</h1>
     <a href="livre-create.php" class="btn bleu"> Ajouter un livre</a>
 
     <table>
@@ -54,8 +47,8 @@ if (isset($_GET['supprimer'])) {
                     <td><?= $livre['annee_publication'] ?></td>
                     <td><?= $livre['genre'] ?></td>
                     <td>
-                        <a href="livre-edit.php?id=<?= $livre['id'] ?>">Modifier</a>
-                        <a href="?supprimer=<?= $livre['id'] ?>" onclick="return confirm('Supprimer ce livre ?')">Supprimer</a>
+                        <a class="btn vert" href="livre-edit.php?id=<?= $livre['id'] ?>">Modifier</a>
+                        <a class="btn rouge" href="?supprimer=<?= $livre['id'] ?>" onclick="return confirm('Supprimer ce livre ?')">Supprimer</a>
                     </td>
                     <td><?= $categorieObj->getById($livre['categorie_id'])['nom'] ?></td>
                     <td><?= $editeurObj->getById($livre['editeur_id'])['nom'] ?></td>
@@ -63,6 +56,5 @@ if (isset($_GET['supprimer'])) {
             <?php endforeach; ?>
         </tbody>
     </table>
-</body>
 
-</html>
+    <?php include('layouts/footer.php'); ?>

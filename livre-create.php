@@ -19,15 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un nouveau livre</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<?php include('layouts/header.php'); ?>
 
 <body>
     <h2>Ajouter un nouveau livre</h2>
@@ -88,4 +81,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </body>
 
-</html>
+<?php include('layouts/footer.php'); ?>

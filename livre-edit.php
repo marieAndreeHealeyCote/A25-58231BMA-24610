@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<link rel="stylesheet" href="css/style.css">
+<?php include('layouts/header.php'); ?>
 
 <h2>Modifier le livre</h2>
 <form method="POST" action="livre-update.php">
@@ -79,3 +79,4 @@ if (isset($_GET['id'])) {
     <button type="submit" class="btn vert">Mettre à jour</button>
     <a href="livre-index.php" class="btn bleu">Annuler</a>
 </form>
+<?php include('layouts/footer.php'); ?>

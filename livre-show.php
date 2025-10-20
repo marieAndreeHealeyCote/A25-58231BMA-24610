@@ -26,14 +26,7 @@ $auteurObj = new Auteur();
 $auteur = $auteurObj->getById($livre['auteur_id']);
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Livre créé</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<?php include('layouts/header.php'); ?>
 
 <body>
     <h1>Livre créé</h1>
@@ -55,4 +48,4 @@ $auteur = $auteurObj->getById($livre['auteur_id']);
     </body>
 </body>
 
-</html>
+<?php include('layouts/footer.php'); ?>
